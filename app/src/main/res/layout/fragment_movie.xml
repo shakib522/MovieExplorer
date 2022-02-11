@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.Ui.MovieFragment"
+    android:padding="10dp"
+    >
+
+    <TextView
+        android:id="@+id/popularTVId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/baloo"
+        android:text="Popular Movie"
+        android:textColor="#09AE53"
+        android:textSize="20sp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/popularRecyclerId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/popularTVId" />
+
+    <TextView
+        android:textColor="#FB0000"
+        android:text="Top Rated"
+        android:textSize="20sp"
+        android:fontFamily="@font/baloo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/topRatedTVId"
+        android:layout_below="@id/popularRecyclerId"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/topRatedRecyclerId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/topRatedTVId" />
+
+    <TextView
+        android:textColor="#0054FB"
+        android:text="Upcoming"
+        android:textSize="20sp"
+        android:fontFamily="@font/baloo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/upcomingTVId"
+        android:layout_below="@id/topRatedRecyclerId"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/upcomingTVId"
+        android:id="@+id/upComingRecyclerId"
+        />
+
+
+</RelativeLayout>
