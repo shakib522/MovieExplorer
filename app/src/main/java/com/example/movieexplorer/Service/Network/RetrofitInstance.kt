@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetrofitInstance {
     companion object {
         private const val BASE_URL = "https://api.themoviedb.org/"
-        private val gson: Gson = GsonBuilder().setLenient().create();
+        private val gson: Gson = GsonBuilder().setLenient().create()
         private var retrofit: Retrofit? = null
         fun getRetrofitInstance(): Retrofit? {
             if (retrofit == null) {

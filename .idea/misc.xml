@@ -4,10 +4,11 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../layout/custom_preview.xml" value="0.22291666666666668" />
+        <entry key="app/src/main/res/drawable/ic_baseline_local_fire_department_24.xml" value="0.115" />
         <entry key="app/src/main/res/drawable/ic_baseline_movie_24.xml" value="0.111" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1796875" />
         <entry key="app/src/main/res/layout/fragment_movie.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/fragment_trending.xml" value="0.19479166666666667" />
+        <entry key="app/src/main/res/layout/fragment_trending.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_tv.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/single_row_picture.xml" value="0.15" />
         <entry key="app/src/main/res/layout/single_row_picture_text.xml" value="0.25" />

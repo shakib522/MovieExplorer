@@ -1,16 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="10dp"
     tools:context=".View.Ui.TrendingFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
+        android:id="@+id/trendingTv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/baloo"
+        android:text="Trending"
+        android:textColor="#FF0000"
+        android:textSize="28sp" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/shapeImageView"
+        android:layout_width="40sp"
+        android:layout_height="40sp"
+        android:layout_toEndOf="@+id/trendingTv"
+        android:src="@drawable/ic_baseline_local_fire_department_24" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/dayWeekButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/shapeImageView"
+        android:fontFamily="@font/baloo"
+        android:text="Day"
+        android:textSize="18sp"
+        app:backgroundTint="#FF0000"
+        app:cornerRadius="8dp"
+
+        />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/pageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:fontFamily="@font/baloo"
+        android:text="Next"
+        android:textSize="18sp"
+        app:backgroundTint="#FF0000"
+        app:cornerRadius="8dp"
+
+        />
+
+    <androidx.recyclerview.widget.RecyclerView
+
+        android:id="@+id/trendRecycler"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="trending fragment"
+        android:layout_below="@+id/dayWeekButton" />
 
-        android:textSize="30sp"/>
-
-</FrameLayout>
+</RelativeLayout>

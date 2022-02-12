@@ -5,6 +5,8 @@ import com.example.movieexplorer.Service.Model.PopularModel.PopularMovieModel
 import com.example.movieexplorer.Service.Model.PopularModel.PopularResult
 import com.example.movieexplorer.Service.Model.TopModel.Result
 import com.example.movieexplorer.Service.Model.TopModel.TopMovieModel
+import com.example.movieexplorer.Service.Model.TrendingModel.TrendingModel
+import com.example.movieexplorer.Service.Model.TrendingModel.TrendingResult
 import com.example.movieexplorer.Service.Model.UpcomingModel.UpcomingModel
 import com.example.movieexplorer.Service.Model.UpcomingModel.UpcomingResult
 import com.example.movieexplorer.Service.Network.ApiService
@@ -19,7 +21,7 @@ object MovieRepository {
     private var mResult: List<PopularResult>? = null
     private lateinit var mLiveData: MutableLiveData<List<PopularResult>>
     private var popularMovieModel: PopularMovieModel? = null
-     var apiService:ApiService?=null
+    var apiService: ApiService? = null
 
     private var topMovieModel: TopMovieModel? = null
     private var topResult: List<Result>? = null
@@ -28,6 +30,10 @@ object MovieRepository {
     private var upcomingMovieModel: UpcomingModel? = null
     private var upcomingResult: List<UpcomingResult>? = null
     private lateinit var upcomingLiveData: MutableLiveData<List<UpcomingResult>>
+
+    private var trendingModel: TrendingModel? = null
+    private var trendingResult: List<TrendingResult>? = null
+    private lateinit var trendingLiveData: MutableLiveData<List<TrendingResult>>
 
     fun getInstance(): MovieRepository {
         instance = MovieRepository
@@ -80,15 +86,15 @@ object MovieRepository {
         return topLiveData
     }
 
-    fun getUpcomingMovieList(page:Int):MutableLiveData<List<UpcomingResult>>{
-        upcomingLiveData=MutableLiveData()
-        apiService=RetrofitInstance.getRetrofitInstance()?.create(ApiService::class.java)
-        val call= apiService?.getUpcomingMovieList(page)
-        call?.enqueue(object:Callback<UpcomingModel>{
+    fun getUpcomingMovieList(page: Int): MutableLiveData<List<UpcomingResult>> {
+        upcomingLiveData = MutableLiveData()
+        apiService = RetrofitInstance.getRetrofitInstance()?.create(ApiService::class.java)
+        val call = apiService?.getUpcomingMovieList(page)
+        call?.enqueue(object : Callback<UpcomingModel> {
             override fun onResponse(call: Call<UpcomingModel>, response: Response<UpcomingModel>) {
-                if(response.body()!=null){
-                    upcomingMovieModel=response.body()
-                    upcomingResult= upcomingMovieModel?.upcomingResults
+                if (response.body() != null) {
+                    upcomingMovieModel = response.body()
+                    upcomingResult = upcomingMovieModel?.upcomingResults
                 }
                 upcomingLiveData.postValue(upcomingResult)
             }
@@ -99,6 +105,27 @@ object MovieRepository {
 
         })
         return upcomingLiveData
+    }
+
+    fun getTrending(type:String,apiKey:String,page: Int): MutableLiveData<List<TrendingResult>> {
+        trendingLiveData = MutableLiveData()
+        apiService = RetrofitInstance.getRetrofitInstance()?.create(ApiService::class.java)
+        val call = apiService?.getTrendingMovie(type,apiKey,page)
+        call?.enqueue(object : Callback<TrendingModel> {
+            override fun onResponse(call: Call<TrendingModel>, response: Response<TrendingModel>) {
+                if (response.body() != null) {
+                    trendingModel = response.body()
+                    trendingResult = trendingModel?.trendingResults
+                }
+                trendingLiveData.postValue(trendingResult)
+            }
+
+            override fun onFailure(call: Call<TrendingModel>, t: Throwable) {
+
+            }
+
+        })
+        return trendingLiveData
     }
 
 }
