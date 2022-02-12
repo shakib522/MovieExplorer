@@ -12,12 +12,12 @@ class MovieViewModel(application:Application) : AndroidViewModel(application) {
     private var movieRepo:MovieRepository = MovieRepository.getInstance()
 
 
-    fun getPopularMovieList():MutableLiveData<List<PopularResult>>{
-        return movieRepo.getPopularMovieList()
+    fun getPopularMovieList(page:Int):MutableLiveData<List<PopularResult>>{
+        return movieRepo.getPopularMovieList(page)
     }
 
-    fun getTopMovieList():MutableLiveData<List<Result>>{
-        return movieRepo.getTopMovieList()
+    fun getTopMovieList(page:Int):MutableLiveData<List<Result>>{
+        return movieRepo.getTopMovieList(page)
     }
 
 }

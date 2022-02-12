@@ -27,10 +27,10 @@ object MovieRepository {
         return instance
     }
 
-    fun getPopularMovieList(): MutableLiveData<List<PopularResult>> {
+    fun getPopularMovieList(page:Int): MutableLiveData<List<PopularResult>> {
         mLiveData= MutableLiveData()
         val apiService = RetrofitInstance.getRetrofitInstance()?.create(ApiService::class.java)
-        val call = apiService?.getPopularMovieList()
+        val call = apiService?.getPopularMovieList(page)
         call?.enqueue(object : Callback<PopularMovieModel> {
             override fun onResponse(
                 call: Call<PopularMovieModel>,
@@ -52,11 +52,11 @@ object MovieRepository {
         return mLiveData
     }
 
-    fun getTopMovieList():MutableLiveData<List<Result>>{
+    fun getTopMovieList(page:Int):MutableLiveData<List<Result>>{
 
         topLiveData= MutableLiveData()
         val apiService = RetrofitInstance.getRetrofitInstance()?.create(ApiService::class.java)
-        val call = apiService?.getTopMovieList()
+        val call = apiService?.getTopMovieList(page)
         call?.enqueue(object : Callback<TopMovieModel> {
             override fun onResponse(call: Call<TopMovieModel>, response: Response<TopMovieModel>) {
                 if(response.body()!=null){
