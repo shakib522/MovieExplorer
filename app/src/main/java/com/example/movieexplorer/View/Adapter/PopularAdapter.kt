@@ -19,11 +19,14 @@ class PopularAdapter(private val context:Context, private val movieList:List<Pop
     }
 
     override fun onBindViewHolder(holder: PopularAdapter.MyViewHolder, position: Int) {
-        Glide.with(context).load("https://image.tmdb.org/t/p/w500/"+movieList.get(position).posterPath).into(holder.imageView)
+        Glide.with(context).load("https://image.tmdb.org/t/p/w500/"+ movieList[position].posterPath).into(holder.imageView)
     }
 
     override fun getItemCount(): Int {
-      return movieList.size
+        if(movieList.isEmpty()){
+            return 0
+        }
+        return movieList.size
     }
 
 
