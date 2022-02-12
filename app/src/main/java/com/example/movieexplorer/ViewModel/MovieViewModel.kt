@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.example.movieexplorer.Service.Model.PopularModel.PopularResult
 import com.example.movieexplorer.Service.Model.TopModel.Result
+import com.example.movieexplorer.Service.Model.UpcomingModel.UpcomingResult
 import com.example.movieexplorer.Service.Repository.MovieRepository
 
 class MovieViewModel(application:Application) : AndroidViewModel(application) {
@@ -18,6 +19,9 @@ class MovieViewModel(application:Application) : AndroidViewModel(application) {
 
     fun getTopMovieList(page:Int):MutableLiveData<List<Result>>{
         return movieRepo.getTopMovieList(page)
+    }
+    fun getUpcomingMovieList(page:Int):MutableLiveData<List<UpcomingResult>>{
+        return movieRepo.getUpcomingMovieList(page)
     }
 
 }

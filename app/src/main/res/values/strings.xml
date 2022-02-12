@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Movie Explorer</string>
     <string name="api_key">61691e4870c885febcaa4652a2aa95a7</string>
+    <string name="title">Title :</string>
+    <string name="release">Release :</string>
+    <string name="rating">Rating :</string>
 
 </resources>
