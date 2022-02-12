@@ -8,7 +8,6 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movieexplorer.R
-import com.example.movieexplorer.Service.Model.PopularModel.PopularResult
 import com.example.movieexplorer.Service.Model.TopModel.Result
 
 class TopAdapter(private val context:Context, private val movieList:List<Result>) : RecyclerView.Adapter<TopAdapter.MyViewHolder>() {

@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationViewId);
+        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationViewId)
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationListener)
         supportFragmentManager.beginTransaction().replace(R.id.frameLayoutId, MovieFragment()).commit()
     }
@@ -20,7 +20,7 @@ class MainActivity : AppCompatActivity() {
         var selectedFragment: Fragment? = null
         when (it.itemId) {
             R.id.movieId -> {
-                selectedFragment = MovieFragment();
+                selectedFragment = MovieFragment()
             }
             R.id.tvId -> {
                 selectedFragment = TvFragment()
