@@ -1,4 +1,4 @@
-package com.example.movieexplorer.View.Adapter
+package com.example.movieexplorer.view.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.movieexplorer.R
-import com.example.movieexplorer.Service.Model.TopModel.Result
+import com.example.movieexplorer.service.model.TopModel.Result
 
 class TopAdapter(private val context:Context, private val movieList:List<Result>) : RecyclerView.Adapter<TopAdapter.MyViewHolder>() {
 
@@ -28,6 +28,6 @@ class TopAdapter(private val context:Context, private val movieList:List<Result>
 
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var imageView:ImageView = itemView.findViewById(R.id.popularTopImageViewId)
+        //var imageView:ImageView = itemView.findViewById(R.id.popularTopImageViewId)
     }
 }

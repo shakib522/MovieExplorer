@@ -1,4 +1,4 @@
-package com.example.movieexplorer.Service.Model.PopularModel
+package com.example.movieexplorer.service.model.popularModel
 
 
 import com.google.gson.annotations.SerializedName

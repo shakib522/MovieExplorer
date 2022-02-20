@@ -1,4 +1,4 @@
-package com.example.movieexplorer.View.Ui
+package com.example.movieexplorer.view.Ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -9,7 +9,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.movieexplorer.R
-import com.example.movieexplorer.View.Adapter.TrendingAdapter
+import com.example.movieexplorer.view.adapter.TrendingAdapter
 import com.example.movieexplorer.ViewModel.MovieViewModel
 import com.google.android.material.button.MaterialButton
 

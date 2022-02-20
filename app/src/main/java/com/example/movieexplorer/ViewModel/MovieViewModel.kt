@@ -1,17 +1,18 @@
 package com.example.movieexplorer.ViewModel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.movieexplorer.Service.Model.PopularModel.PopularMovieModel
-import com.example.movieexplorer.Service.Model.PopularModel.PopularResult
-import com.example.movieexplorer.Service.Model.TopModel.Result
-import com.example.movieexplorer.Service.Model.TopModel.TopMovieModel
-import com.example.movieexplorer.Service.Model.TrendingModel.TrendingModel
-import com.example.movieexplorer.Service.Model.TrendingModel.TrendingResult
-import com.example.movieexplorer.Service.Model.UpcomingModel.UpcomingModel
-import com.example.movieexplorer.Service.Model.UpcomingModel.UpcomingResult
-import com.example.movieexplorer.Service.Network.RetrofitInstance
+import com.example.movieexplorer.service.model.popularModel.PopularMovieModel
+import com.example.movieexplorer.service.model.popularModel.PopularResult
+import com.example.movieexplorer.service.model.TopModel.Result
+import com.example.movieexplorer.service.model.TopModel.TopMovieModel
+import com.example.movieexplorer.service.model.TrendingModel.TrendingModel
+import com.example.movieexplorer.service.model.TrendingModel.TrendingResult
+import com.example.movieexplorer.service.model.UpcomingModel.UpcomingModel
+import com.example.movieexplorer.service.model.UpcomingModel.UpcomingResult
+import com.example.movieexplorer.service.Network.RetrofitInstance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -40,6 +41,7 @@ class MovieViewModel : ViewModel() {
 
 
     fun getPopularMovieList(page: Int = 1): MutableLiveData<List<PopularResult>>? {
+        Log.d("getPopularMovieList", "getPopularMovieList in viewmodel")
         if (page == 1) {
             popularLiveData = getPopular(page)
         } else {
@@ -47,7 +49,6 @@ class MovieViewModel : ViewModel() {
         }
         return popularLiveData
     }
-
 
     fun getTopMovieList(page: Int = 1): MutableLiveData<List<Result>>? {
         if (page == 1) {

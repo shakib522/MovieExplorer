@@ -1,31 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="250dp"
-    android:layout_height="200dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:cardUseCompatPadding="true"
-    android:padding="10dp"
-    app:cardElevation="7dp"
-    app:cardCornerRadius="8dp"
-    >
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <RelativeLayout
+    <data>
+        <variable
+            name="popular"
+            type="com.example.movieexplorer.service.model.popularModel.PopularResult" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="250dp"
         android:layout_height="200dp"
-        android:background="?selectableItemBackground"
-        android:clickable="true"
-        android:focusable="true">
+        app:cardUseCompatPadding="true"
+        android:padding="10dp"
+        app:cardElevation="7dp"
+        app:cardCornerRadius="8dp">
 
-        <ImageView
-            android:id="@+id/popularTopImageViewId"
+        <RelativeLayout
             android:layout_width="250dp"
             android:layout_height="200dp"
-            android:padding="10dp"
-            android:scaleType="fitXY"
-            tools:ignore="ContentDescription"
-            tools:src="@tools:sample/avatars" />
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
 
-    </RelativeLayout>
+            <ImageView
+                android:loadImage="@{popular.posterPath}"
+                android:id="@+id/popularTopImageViewId"
+                android:layout_width="250dp"
+                android:layout_height="200dp"
+                android:padding="10dp"
+                android:scaleType="fitXY"
+                tools:ignore="ContentDescription"
+                tools:src="@tools:sample/avatars" />
 
-</com.google.android.material.card.MaterialCardView>
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

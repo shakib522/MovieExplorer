@@ -1,20 +1,21 @@
-package com.example.movieexplorer.View.Ui
+package com.example.movieexplorer.view.Ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.movieexplorer.R
+import com.example.movieexplorer.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
 
+    lateinit var binding:ActivityMainBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        binding= ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-
-        val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationViewId)
-        bottomNavigationView.setOnNavigationItemSelectedListener(navigationListener)
+        binding.bottomNavigationViewId.setOnNavigationItemSelectedListener(navigationListener)
         supportFragmentManager.beginTransaction().replace(R.id.frameLayoutId, MovieFragment()).commit()
     }
 
