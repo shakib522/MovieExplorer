@@ -1,7 +1,6 @@
 package com.example.movieexplorer.View.Ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +9,12 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.example.movieexplorer.R
-import com.example.movieexplorer.Service.Model.TopModel.Result
 import com.example.movieexplorer.View.Adapter.PopularAdapter
 import com.example.movieexplorer.View.Adapter.TopAdapter
 import com.example.movieexplorer.View.Adapter.UpcomingAdapter
 import com.example.movieexplorer.ViewModel.MovieViewModel
 import com.google.android.material.button.MaterialButton
 
-private const val TAG = "MovieFragment"
 
 class MovieFragment : Fragment() {
 
@@ -32,9 +29,7 @@ class MovieFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
 
-        Log.d(TAG, "onCreateView: ")
         val view = inflater.inflate(R.layout.fragment_movie, container, false)
-
 
         var popularPage = 1
         var topPage = 1
@@ -49,37 +44,28 @@ class MovieFragment : Fragment() {
         upcomingRecycler = view.findViewById(R.id.upComingRecyclerId)
 
 
-        loadPopularMovieList(view, popularPage)
+        loadPopularMovieList(view)
         loadTopMovieList(view)
-        loadUpcomingMovieList(view, upcomingPage)
+        loadUpcomingMovieList(view)
         popularButton.setOnClickListener {
             popularPage++
-            fetchPopularMovieList(it, popularPage)
+            loadPopularMovieList(it,popularPage)
         }
 
         topButton.setOnClickListener {
             topPage++
-            loadTopMovieList(it,topPage)
+            loadTopMovieList(it, topPage)
         }
 
         upcomingButton.setOnClickListener {
             upcomingPage++
             loadUpcomingMovieList(it, upcomingPage)
         }
-
         return view
     }
 
-    private fun fetchPopularMovieList(view: View, page: Int) {
-        movieViewModel.fetchPopularMovie(page)?.observe(viewLifecycleOwner) {
-            val adapter = PopularAdapter(view.context, it)
-            popularRecyclerView.adapter = adapter
-            val manager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL)
-            popularRecyclerView.layoutManager = manager
-        }
-    }
 
-    private fun loadPopularMovieList(view: View, page: Int) {
+    private fun loadPopularMovieList(view: View, page: Int = 1) {
         movieViewModel.getPopularMovieList(page)?.observe(viewLifecycleOwner) {
             val adapter = PopularAdapter(view.context, it)
             popularRecyclerView.adapter = adapter
@@ -89,6 +75,7 @@ class MovieFragment : Fragment() {
     }
 
     private fun loadTopMovieList(view: View, page: Int = 1) {
+
         movieViewModel.getTopMovieList(page)?.observe(viewLifecycleOwner) {
             val adapter = TopAdapter(view.context, it)
             topRecyclerView.adapter = adapter
@@ -98,8 +85,8 @@ class MovieFragment : Fragment() {
 
     }
 
-    private fun loadUpcomingMovieList(view: View, page: Int) {
-        movieViewModel.getUpcomingMovieList(page).observe(viewLifecycleOwner) {
+    private fun loadUpcomingMovieList(view: View, page: Int=1) {
+        movieViewModel.getUpcomingMovieList(page)?.observe(viewLifecycleOwner) {
             val upcomingAdapter = UpcomingAdapter(view.context, it)
             upcomingRecycler.adapter = upcomingAdapter
             val upcomingManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)

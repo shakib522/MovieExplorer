@@ -5,7 +5,6 @@ import com.example.movieexplorer.Service.Model.PopularModel.PopularMovieModel
 import com.example.movieexplorer.Service.Model.TopModel.TopMovieModel
 import com.example.movieexplorer.Service.Model.TrendingModel.TrendingModel
 import com.example.movieexplorer.Service.Model.UpcomingModel.UpcomingModel
-import retrofit2.Call
 import retrofit2.Response
 import retrofit2.http.Path
 import retrofit2.http.Query
