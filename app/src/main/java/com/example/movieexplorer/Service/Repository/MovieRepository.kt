@@ -1,5 +1,6 @@
 package com.example.movieexplorer.Service.Repository
 
+import androidx.lifecycle.LifecycleCoroutineScope
 import androidx.lifecycle.MutableLiveData
 import com.example.movieexplorer.Service.Model.PopularModel.PopularMovieModel
 import com.example.movieexplorer.Service.Model.PopularModel.PopularResult
@@ -11,21 +12,24 @@ import com.example.movieexplorer.Service.Model.UpcomingModel.UpcomingModel
 import com.example.movieexplorer.Service.Model.UpcomingModel.UpcomingResult
 import com.example.movieexplorer.Service.Network.ApiService
 import com.example.movieexplorer.Service.Network.RetrofitInstance
+import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers.IO
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.coroutines.CoroutineContext
 
 object MovieRepository {
 
     private lateinit var instance: MovieRepository
-    private var mResult: List<PopularResult>? = null
-    private lateinit var mLiveData: MutableLiveData<List<PopularResult>>
+    private var popularResult: List<PopularResult>? = null
+    private lateinit var popularLiveData: MutableLiveData<List<PopularResult>>
     private var popularMovieModel: PopularMovieModel? = null
     var apiService: ApiService? = null
 
     private var topMovieModel: TopMovieModel? = null
     private var topResult: List<Result>? = null
-    private lateinit var topLiveData: MutableLiveData<List<Result>>
+    private var topLiveData: MutableLiveData<List<Result>>?=null
 
     private var upcomingMovieModel: UpcomingModel? = null
     private var upcomingResult: List<UpcomingResult>? = null
@@ -40,91 +44,64 @@ object MovieRepository {
         return instance
     }
 
-    fun getPopularMovieList(page: Int): MutableLiveData<List<PopularResult>> {
-        mLiveData = MutableLiveData()
-        apiService = RetrofitInstance.getRetrofitInstance()?.create(ApiService::class.java)
-        val call = apiService?.getPopularMovieList(page)
-        call?.enqueue(object : Callback<PopularMovieModel> {
-            override fun onResponse(
-                call: Call<PopularMovieModel>,
-                response: Response<PopularMovieModel>
-            ) {
-                if (response.body() != null) {
-                    popularMovieModel = response.body()
-                    mResult = popularMovieModel?.results
-                }
-                mLiveData.postValue(mResult)
-
-            }
-
-            override fun onFailure(call: Call<PopularMovieModel>, t: Throwable) {
-
-            }
-
-        })
-        return mLiveData
+    suspend fun getPopularMovieList(page: Int): MutableLiveData<List<PopularResult>> {
+        popularLiveData = MutableLiveData()
+        //apiService = RetrofitInstance.getRetrofitInstance()?.create(ApiService::class.java)
+        val popularResponse = RetrofitInstance.api.getPopularMovieList(page)
+        if (popularResponse.isSuccessful && popularResponse.body() != null) {
+            popularMovieModel = popularResponse.body()
+            popularResult = popularMovieModel?.results
+        }
+        popularLiveData.postValue(popularResult)
+        return popularLiveData
     }
 
-    fun getTopMovieList(page: Int): MutableLiveData<List<Result>> {
-
-        topLiveData = MutableLiveData()
-        apiService = RetrofitInstance.getRetrofitInstance()?.create(ApiService::class.java)
-        val call = apiService?.getTopMovieList(page)
-        call?.enqueue(object : Callback<TopMovieModel> {
-            override fun onResponse(call: Call<TopMovieModel>, response: Response<TopMovieModel>) {
-                if (response.body() != null) {
-                    topMovieModel = response.body()
-                    topResult = topMovieModel?.results
-                }
-                topLiveData.postValue(topResult)
+    fun getTopMovieList(page: Int): MutableLiveData<List<Result>> ? {
+        if(topLiveData==null){
+            topLiveData = MutableLiveData()
+            fetchTopMovieList(page)
+        }
+        return topLiveData
+    }
+    fun fetchTopMovieList(page:Int): MutableLiveData<List<Result>> ?{
+        CoroutineScope(IO).launch {
+            val topResponse = RetrofitInstance.api.getTopMovieList(page)
+            if (topResponse.isSuccessful && topResponse.body() != null) {
+                topMovieModel = topResponse.body()
+                topResult = topMovieModel?.results
             }
-
-            override fun onFailure(call: Call<TopMovieModel>, t: Throwable) {
-
-            }
-        })
+            topLiveData?.postValue(topResult)
+        }
         return topLiveData
     }
 
     fun getUpcomingMovieList(page: Int): MutableLiveData<List<UpcomingResult>> {
         upcomingLiveData = MutableLiveData()
-        apiService = RetrofitInstance.getRetrofitInstance()?.create(ApiService::class.java)
-        val call = apiService?.getUpcomingMovieList(page)
-        call?.enqueue(object : Callback<UpcomingModel> {
-            override fun onResponse(call: Call<UpcomingModel>, response: Response<UpcomingModel>) {
-                if (response.body() != null) {
-                    upcomingMovieModel = response.body()
-                    upcomingResult = upcomingMovieModel?.upcomingResults
-                }
-                upcomingLiveData.postValue(upcomingResult)
+        CoroutineScope(IO).launch {
+            val upcomingResponse = RetrofitInstance.api.getUpcomingMovieList(page)
+            if (upcomingResponse.isSuccessful && upcomingResponse.body() != null) {
+                upcomingMovieModel = upcomingResponse.body()
+                upcomingResult = upcomingMovieModel?.upcomingResults
             }
-
-            override fun onFailure(call: Call<UpcomingModel>, t: Throwable) {
-
-            }
-
-        })
+            upcomingLiveData.postValue(upcomingResult)
+        }
         return upcomingLiveData
     }
 
-    fun getTrending(type:String,apiKey:String,page: Int): MutableLiveData<List<TrendingResult>> {
+    fun getTrending(
+        type: String,
+        apiKey: String,
+        page: Int
+    ): MutableLiveData<List<TrendingResult>> {
         trendingLiveData = MutableLiveData()
-        apiService = RetrofitInstance.getRetrofitInstance()?.create(ApiService::class.java)
-        val call = apiService?.getTrendingMovie(type,apiKey,page)
-        call?.enqueue(object : Callback<TrendingModel> {
-            override fun onResponse(call: Call<TrendingModel>, response: Response<TrendingModel>) {
-                if (response.body() != null) {
-                    trendingModel = response.body()
-                    trendingResult = trendingModel?.trendingResults
-                }
-                trendingLiveData.postValue(trendingResult)
+        CoroutineScope(IO).launch {
+            val trendingResponse = RetrofitInstance.api.getTrendingMovie(type, apiKey, page)
+            if (trendingResponse.isSuccessful && trendingResponse.body() != null) {
+                trendingModel = trendingResponse.body()
+                trendingResult = trendingModel?.trendingResults
             }
-
-            override fun onFailure(call: Call<TrendingModel>, t: Throwable) {
-
-            }
-
-        })
+            trendingLiveData.postValue(trendingResult)
+        }
         return trendingLiveData
     }
 
