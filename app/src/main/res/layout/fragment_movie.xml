@@ -1,98 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout>
 
-    <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <data>
+        <variable
+            name="adapter"
+            type="com.example.movieexplorer.view.adapter.PopularAdapter" />
+    </data>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="4dp"
-        tools:context=".View.Ui.MovieFragment">
+        android:layout_height="match_parent">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/popularButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:elevation="10dp"
-            android:text="Next"
-            app:backgroundTint="#FF09AE53"
-            app:cornerRadius="7dp" />
-
-        <TextView
-            android:id="@+id/popularTVId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/baloo"
-            android:text="Popular Movie"
-            android:textColor="#09AE53"
-            android:textSize="20sp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/popularRecyclerId"
+        <RelativeLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/popularButton" />
+            android:padding="4dp"
+            tools:context=".view.ui.MovieFragment">
 
-        <TextView
-            android:id="@+id/topRatedTVId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/popularRecyclerId"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/baloo"
-            android:text="Top Rated"
-            android:textColor="#FB0000"
-            android:textSize="20sp" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/popularButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:elevation="10dp"
+                android:text="Next"
+                app:backgroundTint="#FF09AE53"
+                app:cornerRadius="7dp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/topButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/popularRecyclerId"
-            android:layout_alignParentEnd="true"
-            android:elevation="10dp"
-            android:text="Next"
-            app:backgroundTint="#F10A0A"
-            app:cornerRadius="7dp" />
+            <TextView
+                android:id="@+id/popularTVId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/baloo"
+                android:text="Popular Movie"
+                android:textColor="#09AE53"
+                android:textSize="20sp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/topRatedRecyclerId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/topButton" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/popularRecyclerId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/popularButton"
+             />
 
-        <TextView
-            android:id="@+id/upcomingTVId"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/topRatedRecyclerId"
-            android:fontFamily="@font/baloo"
-            android:text="Upcoming"
-            android:textColor="#0054FB"
-            android:textSize="20sp" />
+            <TextView
+                android:id="@+id/topRatedTVId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/popularRecyclerId"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/baloo"
+                android:text="Top Rated"
+                android:textColor="#FB0000"
+                android:textSize="20sp" />
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/upcomingButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/topRatedRecyclerId"
-            android:layout_alignParentEnd="true"
-            android:elevation="10dp"
-            android:text="Next"
-            app:backgroundTint="#0054FB"
-            app:cornerRadius="7dp" />
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/topButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/popularRecyclerId"
+                android:layout_alignParentEnd="true"
+                android:elevation="10dp"
+                android:text="Next"
+                app:backgroundTint="#F10A0A"
+                app:cornerRadius="7dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/upComingRecyclerId"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/upcomingButton" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/topRatedRecyclerId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/topButton" />
+
+            <TextView
+                android:id="@+id/upcomingTVId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/topRatedRecyclerId"
+                android:fontFamily="@font/baloo"
+                android:text="Upcoming"
+                android:textColor="#0054FB"
+                android:textSize="20sp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/upcomingButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/topRatedRecyclerId"
+                android:layout_alignParentEnd="true"
+                android:elevation="10dp"
+                android:text="Next"
+                app:backgroundTint="#0054FB"
+                app:cornerRadius="7dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/upComingRecyclerId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/upcomingButton" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
 
-</ScrollView>
+    </ScrollView>
+
+</layout>
