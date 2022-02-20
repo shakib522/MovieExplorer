@@ -5,8 +5,8 @@
 
     <data>
         <variable
-            name="popular"
-            type="com.example.movieexplorer.service.model.popularModel.PopularResult" />
+            name="top"
+            type="com.example.movieexplorer.service.model.topModel.Result" />
     </data>
 
     <com.google.android.material.card.MaterialCardView
@@ -25,7 +25,7 @@
             android:focusable="true">
 
             <ImageView
-                android:loadImage="@{popular.posterPath}"
+                android:loadImage="@{top.posterPath}"
                 android:id="@+id/topImageViewId"
                 android:layout_width="250dp"
                 android:layout_height="200dp"

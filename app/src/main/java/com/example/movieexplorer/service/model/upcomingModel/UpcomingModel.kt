@@ -1,13 +1,15 @@
-package com.example.movieexplorer.service.model.TrendingModel
+package com.example.movieexplorer.service.model.upcomingModel
 
 
 import com.google.gson.annotations.SerializedName
 
-data class TrendingModel(
+data class UpcomingModel(
+    @SerializedName("dates")
+    val dates: Dates,
     @SerializedName("page")
     val page: Int,
     @SerializedName("results")
-    val trendingResults: List<TrendingResult>,
+    val upcomingResults: List<UpcomingResult>,
     @SerializedName("total_pages")
     val totalPages: Int,
     @SerializedName("total_results")

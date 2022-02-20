@@ -1,4 +1,4 @@
-package com.example.movieexplorer.view.Ui
+package com.example.movieexplorer.view.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -1,4 +1,4 @@
-package com.example.movieexplorer.service.Network
+package com.example.movieexplorer.service.network
 
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder

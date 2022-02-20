@@ -1,4 +1,4 @@
-package com.example.movieexplorer.ViewModel
+package com.example.movieexplorer.viewModel
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -6,13 +6,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.movieexplorer.service.model.popularModel.PopularMovieModel
 import com.example.movieexplorer.service.model.popularModel.PopularResult
-import com.example.movieexplorer.service.model.TopModel.Result
-import com.example.movieexplorer.service.model.TopModel.TopMovieModel
-import com.example.movieexplorer.service.model.TrendingModel.TrendingModel
-import com.example.movieexplorer.service.model.TrendingModel.TrendingResult
-import com.example.movieexplorer.service.model.UpcomingModel.UpcomingModel
-import com.example.movieexplorer.service.model.UpcomingModel.UpcomingResult
-import com.example.movieexplorer.service.Network.RetrofitInstance
+import com.example.movieexplorer.service.model.topModel.Result
+import com.example.movieexplorer.service.model.topModel.TopMovieModel
+import com.example.movieexplorer.service.model.trendingModel.TrendingModel
+import com.example.movieexplorer.service.model.trendingModel.TrendingResult
+import com.example.movieexplorer.service.model.upcomingModel.UpcomingModel
+import com.example.movieexplorer.service.model.upcomingModel.UpcomingResult
+import com.example.movieexplorer.service.network.RetrofitInstance
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
@@ -158,7 +158,6 @@ class MovieViewModel : ViewModel() {
         }
         return trendingLiveData
     }
-
 
     private fun fetchTrending(
         type: String,

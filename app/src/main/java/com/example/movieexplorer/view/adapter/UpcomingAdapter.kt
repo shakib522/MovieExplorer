@@ -2,25 +2,20 @@ package com.example.movieexplorer.view.adapter
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.movieexplorer.R
-import com.example.movieexplorer.service.model.UpcomingModel.UpcomingResult
-import com.google.android.material.progressindicator.LinearProgressIndicator
-import kotlin.math.roundToInt
+import com.example.movieexplorer.databinding.SingleRowUpcomingBinding
+import com.example.movieexplorer.service.model.upcomingModel.UpcomingResult
+
 
 
 class UpcomingAdapter(private val context: Context, private val movieList: List<UpcomingResult>) :
     RecyclerView.Adapter<UpcomingAdapter.UpcomingMyViewHolder>() {
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): UpcomingMyViewHolder {
-        val view = LayoutInflater.from(context).inflate(R.layout.single_row_picture_text, parent, false)
-        return UpcomingMyViewHolder(view)
+        val inflater = LayoutInflater.from(context)
+        val binding = SingleRowUpcomingBinding.inflate(inflater, parent, false)
+        return UpcomingMyViewHolder(binding)
     }
 
     override fun getItemCount(): Int {
@@ -29,25 +24,13 @@ class UpcomingAdapter(private val context: Context, private val movieList: List<
         }
         return movieList.size
     }
-
     override fun onBindViewHolder(holder: UpcomingMyViewHolder, position: Int) {
-        Glide.with(context)
-            .load("https://image.tmdb.org/t/p/w500/" + movieList[position].posterPath)
-            .into(holder.imageView)
-        holder.progressBar.progress= movieList[position].voteAverage.roundToInt()
-        val title="Title : " + movieList[position].title
-        val releaseDate="Release Date : " + movieList[position].releaseDate
-        holder.title.text=title
-        holder.releaseDate.text=releaseDate
+        holder.binding.upcoming = movieList[position]
+        holder.binding.progressBarId.progress=movieList[position].voteAverage.toInt()
+        holder.binding.executePendingBindings()
 
     }
-
-    inner class UpcomingMyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var imageView: ImageView = itemView.findViewById(R.id.textImageViewId)
-        var progressBar: LinearProgressIndicator =itemView.findViewById(R.id.progressBarId)
-        var title: TextView =itemView.findViewById(R.id.titleTvId)
-        var releaseDate: TextView =itemView.findViewById(R.id.releaseDateTv)
-    }
-
+    inner class UpcomingMyViewHolder(val binding: SingleRowUpcomingBinding) :
+        RecyclerView.ViewHolder(binding.root)
 }
 

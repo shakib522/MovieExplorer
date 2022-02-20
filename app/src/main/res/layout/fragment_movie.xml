@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="4dp"
-            tools:context=".view.Ui.MovieFragment">
+            tools:context=".view.ui.MovieFragment">
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/popularButton"

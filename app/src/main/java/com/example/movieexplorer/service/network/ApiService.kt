@@ -1,10 +1,10 @@
-package com.example.movieexplorer.service.Network
+package com.example.movieexplorer.service.network
 
 import retrofit2.http.GET
 import com.example.movieexplorer.service.model.popularModel.PopularMovieModel
-import com.example.movieexplorer.service.model.TopModel.TopMovieModel
-import com.example.movieexplorer.service.model.TrendingModel.TrendingModel
-import com.example.movieexplorer.service.model.UpcomingModel.UpcomingModel
+import com.example.movieexplorer.service.model.topModel.TopMovieModel
+import com.example.movieexplorer.service.model.trendingModel.TrendingModel
+import com.example.movieexplorer.service.model.upcomingModel.UpcomingModel
 import retrofit2.Response
 import retrofit2.http.Path
 import retrofit2.http.Query

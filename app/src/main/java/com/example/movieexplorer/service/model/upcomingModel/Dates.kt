@@ -1,4 +1,4 @@
-package com.example.movieexplorer.service.model.UpcomingModel
+package com.example.movieexplorer.service.model.upcomingModel
 
 
 import com.google.gson.annotations.SerializedName

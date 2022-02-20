@@ -6,6 +6,8 @@ import com.bumptech.glide.Glide
 
 
 @BindingAdapter("android:loadImage")
-fun ImageView.loadImage(poster:String){
-    Glide.with(context).load("https://image.tmdb.org/t/p/w500/$poster").into(this)
+fun ImageView.loadImage(poster:String?){
+    if(poster!=null) {
+        Glide.with(context).load("https://image.tmdb.org/t/p/w500/$poster").into(this)
+    }
 }

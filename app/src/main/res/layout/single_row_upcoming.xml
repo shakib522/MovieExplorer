@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="upcoming"
+            type="com.example.movieexplorer.service.model.upcomingModel.UpcomingResult" />
+
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="7dp"
+        app:cardElevation="8dp"
+        app:contentPadding="7dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="?selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true">
+
+            <ImageView
+                android:loadImage="@{upcoming.posterPath}"
+                android:id="@+id/textImageViewId"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:padding="10dp"
+                android:scaleType="fitXY"
+                tools:ignore="ContentDescription"
+                tools:src="@tools:sample/avatars" />
+
+            <TextView
+                android:id="@+id/titleTvId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/textImageViewId"
+                android:fontFamily="@font/baloo"
+                android:textColor="#0054FB"
+                android:textSize="25sp"
+                android:text="@{`Title: ` +upcoming.title}" />
+
+            <TextView
+                android:id="@+id/releaseDateTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/titleTvId"
+                android:fontFamily="@font/baloo"
+                android:text="@{`Release Date: `+upcoming.releaseDate}"
+                android:textColor="#0054FB"
+                android:textSize="25sp" />
+
+            <TextView
+                android:id="@+id/ratingTV"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/releaseDateTv"
+                android:fontFamily="@font/baloo"
+                android:text="@string/rating"
+                android:textColor="#0054FB"
+                android:textSize="25sp" />
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progressBarId"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/releaseDateTv"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_toEndOf="@+id/ratingTV"
+                android:max="10"
+                android:progress="7"
+                app:indicatorColor="#0054FB"
+                app:trackColor="#A3BFF8"
+                app:trackCornerRadius="4dp"
+                app:trackThickness="10dp" />
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

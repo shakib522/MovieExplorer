@@ -1,9 +1,9 @@
-package com.example.movieexplorer.service.model.UpcomingModel
+package com.example.movieexplorer.service.model.topModel
 
 
 import com.google.gson.annotations.SerializedName
 
-data class UpcomingResult(
+data class Result(
     @SerializedName("adult")
     val adult: Boolean,
     @SerializedName("backdrop_path")

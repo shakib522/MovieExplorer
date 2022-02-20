@@ -1,4 +1,4 @@
-package com.example.movieexplorer.service.model.TrendingModel
+package com.example.movieexplorer.service.model.trendingModel
 
 
 import com.google.gson.annotations.SerializedName

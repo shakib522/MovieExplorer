@@ -11,8 +11,13 @@
         <entry key="app/src/main/res/layout/fragment_trending.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_tv.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/single_row_picture.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/single_row_picture_TopMovie.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/single_row_picture_text.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/single_row_picture_top_movie.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/layout/single_row_text.xml" value="0.19479166666666667" />
+        <entry key="app/src/main/res/layout/single_row_trending.xml" value="0.19479166666666667" />
+        <entry key="app/src/main/res/layout/single_row_upcoming.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/upcoming_single_row.xml" value="0.19479166666666667" />
         <entry key="app/src/main/res/menu/nav_menu.xml" value="0.33" />
       </map>
     </option>
