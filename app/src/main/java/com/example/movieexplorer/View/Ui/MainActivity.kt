@@ -7,9 +7,11 @@ import com.example.movieexplorer.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
 
         val bottomNavigationView = findViewById<BottomNavigationView>(R.id.bottomNavigationViewId)
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationListener)
@@ -34,4 +36,5 @@ class MainActivity : AppCompatActivity() {
         }
         true
     }
+
 }

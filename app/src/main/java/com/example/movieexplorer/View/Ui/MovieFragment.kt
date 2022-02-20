@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -23,7 +22,7 @@ class MovieFragment : Fragment() {
     private lateinit var movieViewModel: MovieViewModel
     private lateinit var popularRecyclerView: RecyclerView
     private lateinit var topRecyclerView: RecyclerView
-    private lateinit var upcomingRecycler:RecyclerView
+    private lateinit var upcomingRecycler: RecyclerView
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -32,67 +31,67 @@ class MovieFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_movie, container, false)
 
-
         var popularPage = 1
-        var topPage=1
-        var upcomingPage=1
+        var topPage = 1
+        var upcomingPage = 1
 
         val popularButton = view.findViewById<MaterialButton>(R.id.popularButton)
         val topButton = view.findViewById<MaterialButton>(R.id.topButton)
-        val upcomingButton=view.findViewById<MaterialButton>(R.id.upcomingButton)
-        movieViewModel = ViewModelProvider(this).get(MovieViewModel::class.java)
+        val upcomingButton = view.findViewById<MaterialButton>(R.id.upcomingButton)
+        movieViewModel = ViewModelProvider(requireActivity()).get(MovieViewModel::class.java)
         popularRecyclerView = view.findViewById(R.id.popularRecyclerId)
         topRecyclerView = view.findViewById(R.id.topRatedRecyclerId)
-        upcomingRecycler=view.findViewById(R.id.upComingRecyclerId)
+        upcomingRecycler = view.findViewById(R.id.upComingRecyclerId)
 
 
-        loadPopularMovieList(view, popularPage)
-        loadTopMovieList(view,topPage)
-        loadUpcomingMovieList(view,upcomingPage)
+        loadPopularMovieList(view)
+        loadTopMovieList(view)
+        loadUpcomingMovieList(view)
         popularButton.setOnClickListener {
             popularPage++
-            loadPopularMovieList(it, popularPage)
+            loadPopularMovieList(it,popularPage)
         }
 
         topButton.setOnClickListener {
             topPage++
-            loadTopMovieList(it,topPage)
+            loadTopMovieList(it, topPage)
         }
 
         upcomingButton.setOnClickListener {
             upcomingPage++
-            loadUpcomingMovieList(it,upcomingPage)
+            loadUpcomingMovieList(it, upcomingPage)
         }
-
         return view
     }
 
-    private fun loadPopularMovieList(view: View, page: Int) {
-        movieViewModel.getPopularMovieList(page).observe(viewLifecycleOwner, Observer {
+
+    private fun loadPopularMovieList(view: View, page: Int = 1) {
+        movieViewModel.getPopularMovieList(page)?.observe(viewLifecycleOwner) {
             val adapter = PopularAdapter(view.context, it)
             popularRecyclerView.adapter = adapter
             val manager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL)
             popularRecyclerView.layoutManager = manager
-        })
+        }
     }
 
-    private fun loadTopMovieList(view: View, page: Int) {
-        movieViewModel.getTopMovieList(page).observe(viewLifecycleOwner, Observer {
-            val topAdapter = TopAdapter(view.context, it)
-            topRecyclerView.adapter = topAdapter
-            val topManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL)
-            topRecyclerView.layoutManager = topManager
-        })
+    private fun loadTopMovieList(view: View, page: Int = 1) {
+
+        movieViewModel.getTopMovieList(page)?.observe(viewLifecycleOwner) {
+            val adapter = TopAdapter(view.context, it)
+            topRecyclerView.adapter = adapter
+            val manager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.HORIZONTAL)
+            topRecyclerView.layoutManager = manager
+        }
+
     }
 
-    private fun loadUpcomingMovieList(view:View,page: Int){
-        movieViewModel.getUpcomingMovieList(page).observe(viewLifecycleOwner, Observer {
-            val upcomingAdapter=UpcomingAdapter(view.context,it)
-            upcomingRecycler.adapter=upcomingAdapter
-            val upcomingManager=StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.VERTICAL)
-            upcomingRecycler.layoutManager=upcomingManager
-        })
+    private fun loadUpcomingMovieList(view: View, page: Int=1) {
+        movieViewModel.getUpcomingMovieList(page)?.observe(viewLifecycleOwner) {
+            val upcomingAdapter = UpcomingAdapter(view.context, it)
+            upcomingRecycler.adapter = upcomingAdapter
+            val upcomingManager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
+            upcomingRecycler.layoutManager = upcomingManager
+        }
     }
-
 
 }

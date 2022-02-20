@@ -13,7 +13,7 @@ import com.example.movieexplorer.View.Adapter.TrendingAdapter
 import com.example.movieexplorer.ViewModel.MovieViewModel
 import com.google.android.material.button.MaterialButton
 
-
+private const val apiKey="61691e4870c885febcaa4652a2aa95a7"
 class TrendingFragment : Fragment() {
 
     private lateinit var movieViewModel: MovieViewModel
@@ -24,35 +24,34 @@ class TrendingFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view=inflater.inflate(R.layout.fragment_trending, container, false)
-        movieViewModel=ViewModelProvider(this).get(MovieViewModel::class.java)
+        movieViewModel=ViewModelProvider(requireActivity()).get(MovieViewModel::class.java)
         trendRecycler=view.findViewById(R.id.trendRecycler)
-        val apiKey="61691e4870c885febcaa4652a2aa95a7"
         var page=1
         val dayWeekButton:MaterialButton=view.findViewById(R.id.dayWeekButton)
         val pageButton:MaterialButton=view.findViewById(R.id.pageButton)
 
-        loadUpcomingMovieList(view,page,apiKey,dayWeekButton.text.toString().lowercase())
+        loadTrending(view,apiKey,dayWeekButton.text.toString().lowercase())
 
         pageButton.setOnClickListener {
             page++
-            loadUpcomingMovieList(view,page,apiKey,dayWeekButton.text.toString().lowercase())
+            loadTrending(view,apiKey,dayWeekButton.text.toString().lowercase(),page)
         }
 
         dayWeekButton.setOnClickListener {
             if(dayWeekButton.text.toString().lowercase() == "day"){
                 dayWeekButton.text=getString(R.string.week_for_api)
-                loadUpcomingMovieList(view,page,apiKey,dayWeekButton.text.toString().lowercase())
+                loadTrending(view,apiKey,dayWeekButton.text.toString().lowercase(),page)
             }else{
                 dayWeekButton.text=getString(R.string.day_for_api)
-                loadUpcomingMovieList(view,page,apiKey,dayWeekButton.text.toString().lowercase())
+                loadTrending(view,apiKey,dayWeekButton.text.toString().lowercase(),page)
             }
         }
 
         return view
     }
 
-    private fun loadUpcomingMovieList(view:View,page: Int,apiKey:String,type:String){
-        movieViewModel.getTrending(type,apiKey,page).observe(viewLifecycleOwner) {
+    private fun loadTrending(view:View,apiKey:String,type:String,page:Int=1){
+        movieViewModel.getTrendingMovieList(type,apiKey,page)?.observe(viewLifecycleOwner) {
             val trendAdapter = TrendingAdapter(view.context, it)
             trendRecycler.adapter = trendAdapter
             val manager = StaggeredGridLayoutManager(1, StaggeredGridLayoutManager.VERTICAL)
